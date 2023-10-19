@@ -1,10 +1,13 @@
 <template>
     <h1>Ninja Reactor Time</h1>
-    <button @click="start">Play</button>
+    <button @click="start" :disabled="isPlaying">Play</button>
+
+    <Block v-if="isPlaying" :delay="delay"></Block>
+  
 </template>
 
 <script>
-
+import Block from './components/Block.vue'
 
 export default {
   name: 'App',
@@ -15,11 +18,12 @@ export default {
     }
   },
   components: {
+    Block
   },
   methods: {
     start() {
       console.log('start')
-      this.delay = 2000 + Math.random() * 5000
+      this.delay = 2000 + Math.random() * 3000
       this.isPlaying = true
       console.log(this.delay)
     }
